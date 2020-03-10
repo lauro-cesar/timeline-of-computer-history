@@ -1,0 +1,6 @@
+markdown
+djangorestframework
+djangorestframework-xml
+django-admin-tools
+pygments
+django-mptt
