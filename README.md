@@ -3,6 +3,11 @@ Simple Django App to generate a timeline of events from the computer history.
 
 Work in progress
 
+#TODO:
+
+* adicionar campo para link das fontes
+
+
 # Development Environment
 * Sublime Text
 * Python VirtualEnv

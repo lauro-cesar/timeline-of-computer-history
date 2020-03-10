@@ -29,7 +29,6 @@ ALLOWED_HOSTS = ['localhost','127.0.0.1','localhost:8000']
 
 
 REST_FRAMEWORK = {
-
     'DEFAULT_THROTTLE_CLASSES': ['rest_framework.throttling.AnonRateThrottle','rest_framework.throttling.UserRateThrottle'],
     'DEFAULT_THROTTLE_RATES': {'anon': '1000/day','user': '1000/day'},
     'DEFAULT_PERMISSION_CLASSES': [
@@ -40,7 +39,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ]

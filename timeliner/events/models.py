@@ -8,9 +8,13 @@ class TimelineEvent(models.Model):
 	dateCreated = models.DateTimeField(auto_now=True,verbose_name=_("Data  de registro"))
 	lastModified = models.DateTimeField(auto_now=True,verbose_name=_("Último login"))
 	label = models.CharField(max_length=255,blank=True,verbose_name=_("Titulo"))
-	description = models.CharField(max_length=255,blank=True,verbose_name=_("Descricao"))
+	description = models.TextField(max_length=1024,default="",verbose_name=_("Descrição"))
 	eventYear =  models.DateField(verbose_name=_("Data do evento"))
 
+
+	@property
+	def year(self):
+		 return self.eventYear.year
 
 	class Meta:
 		verbose_name = _("Evento importante")

@@ -34,30 +34,50 @@
 
 <div class="ui feed">
 
-{% for event in events %}
+
+{% regroup events by year as year_list %}
+
+
+{% for event in year_list %}
+
+
 
   <div class="event">
     <div class="label">
-     {{event.eventYear|date:"Y" }}
+     {{ event.grouper }}
     </div>
-    <div class="content">
-      <div class="date">
-         {{event.eventYear|date:"l" }}, dia {{event.eventYear|date:"d" }} de {{event.eventYear|date:"F" }}
-      </div>
-      <div class="summary">
-         Titulo
-      </div>
 
-      <div class="extra text">
-        Have you seen what's going on in Israel? Can you believe it.
+
+    <div class="content">
+
+  		{% for e in event.list %}
+
+            <div class="summary">
+
+            <div class="date">
+          	{{e.eventYear|date:"l" }}, dia {{e.eventYear|date:"j" }} de {{e.eventYear|date:"F" }} |
+        	</div>
+        	<div class="user">
+         {{e.label}}
+     </div>
+      		</div>
+ <div class="extra text">
+        {{e.description}}
       </div>
+      <h4 class="ui horizontal divider header">
+  <i class="angle down icon"></i>
+</h4>
+        {% endfor %}
+
+
+
+
+
 
     </div>
   </div>
 
-<h4 class="ui horizontal divider header">
-  <i class="angle down icon"></i>
-</h4>
+
 
 {% endfor %}
 
