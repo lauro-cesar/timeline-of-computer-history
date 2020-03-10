@@ -1,0 +1,77 @@
+
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+	</head>
+</html>
+<body>
+
+
+<div class="ui segment">
+<h2 class="ui center aligned icon header">
+  <i class="calendar alternate outline icon"></i>
+  Alguns eventos importantes na história da computação
+
+  <div class="content">
+    2000 até 2020
+    <div class="sub header">
+    	Source code: <a href="https://github.com/lauro-cesar/timeline-of-computer-history">https://github.com/lauro-cesar/timeline-of-computer-history</a>
+
+    </div>
+  </div>
+
+</h2>
+
+</div>
+
+
+
+
+<div class="ui raised very padded text container segment">
+
+
+
+<div class="ui feed">
+
+{% for event in events %}
+
+  <div class="event">
+    <div class="label">
+     {{event.eventYear|date:"Y" }}
+    </div>
+    <div class="content">
+      <div class="date">
+         {{event.eventYear|date:"l" }}, dia {{event.eventYear|date:"d" }} de {{event.eventYear|date:"F" }}
+      </div>
+      <div class="summary">
+         Titulo
+      </div>
+
+      <div class="extra text">
+        Have you seen what's going on in Israel? Can you believe it.
+      </div>
+
+    </div>
+  </div>
+
+<h4 class="ui horizontal divider header">
+  <i class="angle down icon"></i>
+</h4>
+
+{% endfor %}
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+</body>

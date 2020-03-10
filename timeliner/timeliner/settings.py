@@ -15,7 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+SITE_ID = 1
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -24,14 +24,12 @@ SECRET_KEY = '9%#*=ggb7!=(y8!t)r+16wle-_x($^rc*!%^-^xqvfk((@4)z+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+LOCAL = True
+ALLOWED_HOSTS = ['localhost','127.0.0.1','localhost:8000']
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework_xml.parsers.XMLParser',
-    ],
+
     'DEFAULT_THROTTLE_CLASSES': ['rest_framework.throttling.AnonRateThrottle','rest_framework.throttling.UserRateThrottle'],
     'DEFAULT_THROTTLE_RATES': {'anon': '1000/day','user': '1000/day'},
     'DEFAULT_PERMISSION_CLASSES': [
@@ -48,22 +46,37 @@ REST_FRAMEWORK = {
     ]
 }
 
-ADMIN_TOOLS_INDEX_DASHBOARD = 'server.dashboard.main.MainDashboard'
-ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'server.dashboard.main.MainAppIndexDashboard'
-ADMIN_TOOLS_MENU = 'server.dashboard.menu.MainMenu'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'timeliner.dashboard.main.MainDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'timeliner.dashboard.main.MainAppIndexDashboard'
+ADMIN_TOOLS_MENU = 'timeliner.dashboard.menu.MainMenu'
 ADMIN_TOOLS_THEMING_CSS='frontend/css/dashboard.css'
 
 
-
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
+    'events.apps.EventsConfig',
+    'timeliner.apps.TimeLinerConfig',
+    'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.contenttypes',
+    'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'django.contrib.gis',
+    'django.contrib.humanize',
+    'mptt',
+    'django_filters',
 ]
 
+
+    # 'server.debugger.DebugMe',
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,7 +85,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
+
 
 ROOT_URLCONF = 'timeliner.urls'
 
@@ -163,6 +178,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
 
-if LOCAL:
-    STATIC_URL = "http://localhost/static/"
-    MEDIA_URL = "http://localhost/media/"
+# if LOCAL:
+#     STATIC_URL = "http://localhost/static/"
+#     MEDIA_URL = "http://localhost/media/"

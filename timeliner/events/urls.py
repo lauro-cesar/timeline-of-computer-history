@@ -6,7 +6,8 @@ from django.conf import settings
 
 
 router = DefaultRouter()
-router.register(r'events', views.EventsViewSet,basename="events")
+router.register(r'events', views.TimelineEventViewSet,basename="events")
 urlpatterns = [
+	path('timeline/home/', views.TimeLineHome, name='timeline-home'),
     path('', include(router.urls))
 ]

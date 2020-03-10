@@ -39,10 +39,10 @@ class MainDashboard(Dashboard):
                 models=['django.contrib.sites.*','django.contrib.flatpages.*']
             ))
 
-        # self.children.append(modules.ModelList(
-        #         title=_('Efa Serviços '),
-        #         models=['accounts.models.*',]
-        #     ))
+        self.children.append(modules.ModelList(
+                title=_('Gerenciamento de Eventos'),
+                models=['events.models.*',]
+            ))
 
         # self.children.append(modules.ModelList(
         #         title=_('Efa Produtos'),
@@ -69,8 +69,8 @@ class MainDashboard(Dashboard):
                     'attrs': {'target': '_blank'},
                 },
                 {
-                    'title': _('lauro@hostcert.com.br'),
-                    'url': 'mailto://lauro@hostcert.com.br',
+                    'title': _('lauro@sharedway.app'),
+                    'url': 'mailto://lauro@sharedway.app',
                     'external': True,
                     'attrs': {'target': '_blank'},
                 }
